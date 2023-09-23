@@ -1,0 +1,39 @@
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite o ano do seu nascimento: ");
+        int ano = entrada.nextInt();
+        int idade = 2023 - ano;
+        System.out.println("Digite o mês da sua data nascimneto: ");
+        int mes = entrada.nextInt();
+        int mes_dias = 9 - mes;
+    
+        if(mes_dias < 0)
+        {
+            idade--;
+            mes_dias = mes_dias + 12;
+        }
+    
+        System.out.println("Digite o dia do mês que vc nasceu: ");
+        int dia = entrada.nextInt();
+        int dia_certo = 21 - dia;
+    
+        if (dia_certo < 0)
+        {
+            mes_dias--;
+            dia_certo = dia_certo + 30;
+        }
+    
+        int tempo = CalculoDias(idade, mes_dias, dia_certo);
+        System.out.println(idade + " anos " + mes_dias + " meses e " + dia_certo + " dias " + " = " +  tempo + " dias.");   
+	}
+	public static int CalculoDias(int idade, int mes, int dia)
+	{
+	    int conta_ano = idade * 365;
+	    int conta_mes = mes * 30;
+	    int conta_final = conta_ano + conta_mes + dia;
+	    return conta_final; 
+	}
+}
