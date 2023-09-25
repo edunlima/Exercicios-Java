@@ -1,0 +1,12 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {   
+        Scanner entrada = new Scanner(System.in);
+        System.out.println("Digite um texto: ");
+        String texto = entrada.nextLine();
+        int tamanho_do_texto = texto.length();
+        System.out.println("O tamanho do seu texto é: " + tamanho_do_texto);
+        entrada.close();
+	}
+}
