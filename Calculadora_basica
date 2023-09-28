@@ -1,0 +1,27 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner entrada = new Scanner(System.in);
+        int posicao = 0;
+        int[] numeros = new int[2];
+        while(posicao < 2)
+        {
+            System.out.println("Digite o "+ posicao + " numero: ");
+            numeros[posicao] = entrada.nextInt();
+            posicao++;
+        }
+       int soma, sub, mult, div;
+       soma = numeros[0] + numeros[1];
+       sub = numeros[0] - numeros[1];
+       mult = numeros[0] * numeros[1];
+       div = numeros[0] / numeros[1];
+       int[] contas = {soma, sub, mult, div};
+       String[] nomes = {"soma", "subtracao", "multiplicacao", "divisao"};
+        for(int i = 0; i < 4 ; i++)
+        {
+            System.out.println("A " + nomes[i] + " dos numeros é: " + contas[i]);
+        }
+        entrada.close();
+	}
+}
