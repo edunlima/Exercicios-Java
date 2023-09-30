@@ -1,0 +1,16 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	
+	    Scanner entrada = new Scanner(System.in);
+        System.out.println("Insira a distancia total percorrida em km: "); 
+        double distancia = entrada.nextDouble();
+        System.out.println("Insira o total de combustivel consumido em litros: ");
+        double combustivel = entrada.nextDouble();
+        double conta = combustivel / distancia;
+        System.out.println("O consumo médio de combustivel é: " + conta + " L/Km");
+        entrada.close();
+        
+	}
+}
