@@ -1,0 +1,18 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	
+	    Scanner entrada = new Scanner(System.in);
+        System.out.println("Escreva seu nome: ");
+        String nome = entrada.next();
+        System.out.println("Digite o seu salario fixo: ");
+        double salario = entrada.nextDouble();
+        System.out.println("Digite o total de vendas do mês (em dinheiro): ");
+        double vendas = entrada.nextDouble();
+        double comissao = (vendas * 0.15) + salario;
+        System.out.println(nome + ", R$" + salario + ", com comissão R$" + comissao);
+        entrada.close();
+        
+	}
+}
