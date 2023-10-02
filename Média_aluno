@@ -1,0 +1,27 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	
+	    Scanner entrada = new Scanner(System.in);
+        System.out.println("Escreva seu nome: ");
+        String nome = entrada.next();
+        double[] notas = new double[3];
+        double soma = 0;
+        int contador = 0;
+        while (contador < 3)
+        {
+            System.out.println("Escreva sua " + contador + " nota: ");
+            notas[contador] = entrada.nextDouble();
+            soma += notas[contador];
+            contador++;
+        }
+        double media = soma / 3;
+        System.out.println(nome + ", média " + media);
+        entrada.close();
+        
+	}
+}
+
+
+
