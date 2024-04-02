@@ -1,0 +1,157 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+		int[] nivel_medio = { 23, 33, 63, 68, 19, 10, 1, 0};
+		int[] nivel_superior = { 35, 57, 41, 10, 8, 0, 1, 0};
+		int[] casas = {2, 3, 4, 4, 5, 3, 4, 
+		                5, 6, 5, 3, 1, 5, 5,
+		                1, 3, 4, 5, 5, 5, 3,
+		                2, 2, 5, 4, 4, 2, 3,
+		                5, 4, 5, 4, 2, 4, 9	};
+		System.out.println("Escolha qual o vetor quer saber as formulas estatisticas: 1, 2 ou 3");
+		int escolha = sc.nextInt();
+		if(escolha == 1)
+		{
+			System.out.println("Media: "+Media(nivel_medio));
+			System.out.println("Mediana: "+ Mediana(nivel_medio));
+			System.out.println("Moda: " + Moda(nivel_medio));
+			System.out.println("Desvio Padrao: " + DesvioPadrao(nivel_medio));
+
+		}
+		else if(escolha ==2){
+		    	System.out.println("Media: "+Media(nivel_superior));
+			System.out.println("Mediana: "+ Mediana(nivel_superior));
+			System.out.println("Moda: " + Moda(nivel_superior));
+			System.out.println("Desvio Padrao: " + DesvioPadrao(nivel_superior));
+		}
+		else 
+		{
+		    int[][] casasFuncao = FrequenciaEmClasse(casas);
+		    System.out.println("Frequencia Absoluta: ");
+		    for(int i = 0; i < casasFuncao.length; i++)
+		    {
+		        System.out.println("Elemento: " +casasFuncao[i][0] + ", Frequencia Absoluta: " + casasFuncao[i][1] + ", Acumulada: " + casasFuncao[i][2] + ", Relativa: " + casasFuncao[i][3]);
+		    }
+		}
+	}
+	    public static int[] OrdenarVetor(int[] vetor)
+	    {
+	    for (int i = 1; i < vetor.length; i++) {
+        for (int j = 0; j < i; j++) {
+        if (vetor[i] < vetor[j]) {
+            int temp = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = temp;
+        }
+        }
+        }   
+        return vetor;
+	   }
+	   
+		public static int Media (int[] vetor)
+		{
+		  int nivel_medio_media = 0; 
+		  int media = 0;
+		 for(int i = 0; i < vetor.length; i++)
+		{
+		    nivel_medio_media  += vetor[i];
+		}
+		media = nivel_medio_media / vetor.length;
+		return media;
+		}
+		
+		public static int Mediana (int[] vetor)
+		{
+		 OrdenarVetor(vetor);
+        int mediana = vetor.length / 2;
+            if(mediana %2 == 0)
+            {
+                
+                mediana = ((vetor[mediana] + vetor[mediana - 1]) / 2);
+            }
+            else 
+            {
+                mediana = vetor[mediana];
+            }
+		    return mediana;
+		}
+		
+		public static int Moda (int[] vetor)
+		{
+		    int numero = 1;
+		    int moda = 0;
+		    int vezes = 1;
+		    for(int i = 1; i < vetor.length; i++)
+		    {
+		        if(vetor[i] == vetor[i - 1])
+		       {
+		            vezes++;
+		        }
+		        else {
+		            vezes = 1;
+		        }
+		         if(vezes > numero)
+		            {
+		                moda = vetor[i];
+		                 numero = vezes;
+		            }
+		        }
+		    return moda;
+		} 
+		public static int DesvioPadrao (int[] vetor)
+		{
+		    
+		   int desvio_padrao1 = 0;
+		   int desvio_padrao2 = 0;
+		   for(int i = 0; i < vetor.length; i++)
+		   {
+		       desvio_padrao1 += (int) Math.pow(vetor[i] - Media(vetor),2);
+		   }
+		   desvio_padrao2 = (int) Math.sqrt(desvio_padrao1 / vetor.length);
+		    return desvio_padrao2;
+		}
+		
+		public static int[][] FrequenciaEmClasse (int[] vetor)
+		{
+		   OrdenarVetor(vetor);
+		   int max = Integer.MIN_VALUE;
+        for (int num : vetor) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        int[] frequencias = new int[max + 1];
+        for (int num : vetor) {
+            frequencias[num]++;
+        }
+        int totalElementos = 0;
+        for (int i = 0; i < frequencias.length; i++) {
+            if (frequencias[i] != 0) {
+                totalElementos++;
+            }
+        }
+        int[][] resultado = new int[totalElementos][4];
+        int index = 0;
+        for (int i = 0; i < frequencias.length; i++) {
+            if (frequencias[i] != 0) {
+                resultado[index][0] = i; 
+                resultado[index][1] = frequencias[i]; 
+                index++;
+            }
+        }
+        int soma = 0;
+        for(int i = 0; i < resultado.length; i++)
+        {
+            soma += resultado[i][1];
+            resultado[i][2] = soma;
+        }
+            for(int i = 0; i < resultado.length; i++)
+        {
+            int relativa = (resultado[i][1] * 100) / soma;
+            resultado[i][3] = relativa;
+        }
+        return resultado;
+    }
+		    }
